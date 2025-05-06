@@ -1,0 +1,33 @@
+{
+  "name": "atividade_backend_exames.md",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annabialeme/Atividade_Backend_Exames.md.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annabialeme/Atividade_Backend_Exames.md/issues"
+  },
+  "homepage": "https://github.com/annabialeme/Atividade_Backend_Exames.md#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "fast-csv": "^5.0.2",
+    "multer": "^1.4.5-lts.2",
+    "path": "^0.12.7",
+    "pdfkit": "^0.17.1",
+    "pg": "^8.15.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
