@@ -28,7 +28,7 @@ const createExame = async (req, res) => {
         const newExame = await exameModel.createExame(exame, photo);
         res.status(201).json(newExame);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao criar ex1ame." });
+        res.status(500).json({ message: "Erro ao criar exame." });
     }
 };
 
@@ -44,7 +44,6 @@ const updateExame = async (req, res) => {
         res.status(500).json({ message: "Erro ao atualizar exame." });
     }
 };
-
 const deleteExame = async (req, res) => {
     try {
         const message = await exameModel.deleteExame(req.params.id);
@@ -53,5 +52,4 @@ const deleteExame = async (req, res) => {
         res.status(500).json({ message: "Erro ao deletar exame." });
     }
 };
-
 module.exports = { getAllExames, getExame, createExame, updateExame, deleteExame };
