@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const examesController = require("../controllers/examesController.js");
-const upload = require("./../config/upload.js");
+const upload = require("../config/upload.js");
 
 
 

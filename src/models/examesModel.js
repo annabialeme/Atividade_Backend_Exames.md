@@ -10,14 +10,14 @@ const getAllExames = async (tipo_exame) => {
     }
 };
 
-const getExameById = async (id) => {
+const getExames = async (id) => {
     const result = await pool.query("SELECT * FROM exames WHERE id = $1", [id]);
     return result.rows[0];
 };
 
-const createExame = async (tipo_exame) => {
+const createExames = async (tipo_exame) => {
     const result = await pool.query(
-        "INSERT INTO exames (tipo_exame) VALUES ($1, $2) RETURNING *",
+        "INSERT INTO exames (tipo_exame) VALUES ($1) RETURNING *",
         [tipo_exame]
     );
     return result.rows[0];
@@ -25,7 +25,7 @@ const createExame = async (tipo_exame) => {
 
 const updateExame = async (id, tipo_exame) => {
     const result = await pool.query(
-        "UPDATE exames SET tipo_exame = $1 WHERE id = $3 RETURNING *",
+        "UPDATE exames SET tipo_exame = $1 WHERE id = $2 RETURNING *",
         [tipo_exame, id]
     );
     return result.rows[0];
@@ -43,4 +43,4 @@ const deleteExame = async (id) => {
 
 
 
-module.exports = {getAllExames, getExameById, createExame, updateExame, deleteExame};
+module.exports = {getAllExames, getExames, createExames, updateExame, deleteExame};

@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pacientesController = require("../controllers/pacientesController.js");
-const upload = require("./../config/upload.js");
-
-
+const upload = require("../config/upload.js");
 
 router.get("/pacientes", pacientesController.getAllPacientes);
 router.get("/pacientes/:id", pacientesController.getPaciente);

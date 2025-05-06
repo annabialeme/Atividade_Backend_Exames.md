@@ -1,39 +1,27 @@
 const pool = require("../config/database");
 
-const getPaciente = async () => {
-    const result = await pool.query(
-        `SELECT pacientes.*, pacientes.name AS pacientes_name 
-        FROM pacientes 
-        LEFT JOIN pacientes ON pacientes.paciente_id = pacientes.id`
-    );
-    return result.rows;
-};
-
 const getAllPacientes = async () => {
     const result = await pool.query("SELECT * FROM pacientes");
     return result.rows
 }
 
 const getPacienteById = async (id) => {
+    const result = await pool.query("SELECT * FROM pacientes WHERE id = $1", [id]);
+    return result.rows[0];
+};
+
+const createPaciente = async (name, idade) => {
     const result = await pool.query(
-        `SELECT * FROM pacientes
-        WHERE id = $1`, [id]
+        "INSERT INTO pacientes (name, idade) VALUES ($1, $2) RETURNING *",
+        [name, idade]
     );
     return result.rows[0];
 };
 
-const createPaciente = async (id, name, idade, paciente_id, photo) => {
+const updatePaciente = async (id, name, idade) => {
     const result = await pool.query(
-        "INSERT INTO pacientes (name, idade, paciente_id, photo) VALUES ($1, $2, $3) RETURNING *",
-        [name, idade, paciente_id, photo]
-    );
-    return result.rows[0];
-};
-
-const updatePaciente = async (id, name, idade, paciente_id) => {
-    const result = await pool.query(
-        "UPDATE pacientes SET name = $1, idade = $2, paciente_id = $3 WHERE id = $4 RETURNING *",
-        [name, idade, paciente_id, id]
+        "UPDATE pacientes SET name = $1, idade = $2, WHERE id = $3 RETURNING *",
+        [name, idade, id]
     );
     return result.rows[0];
 };
@@ -48,4 +36,4 @@ const deletePaciente = async (id) => {
     return { message: "Paciente deletado com sucesso." };
 };
 
-module.exports = {getPaciente, getAllPacientes, getPacienteById, createPaciente, updatePaciente, deletePaciente};
+module.exports = { getAllPacientes, getPacienteById, createPaciente, updatePaciente, deletePaciente};
