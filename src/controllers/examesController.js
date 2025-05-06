@@ -37,13 +37,14 @@ const updateExame = async (req, res) => {
         const { exame } = req.body;
         const updatedExame = await exameModel.updateExame(req.params.id, exame);
         if (!updatedExame) {
-            return res.status(404).json({ message: "Exame não encontrada." });
+            return res.status(404).json({ message: "Exame não encontrado." });
         }
         res.json(updatedExame);
     } catch (error) {
         res.status(500).json({ message: "Erro ao atualizar exame." });
     }
 };
+
 const deleteExame = async (req, res) => {
     try {
         const message = await exameModel.deleteExame(req.params.id);
