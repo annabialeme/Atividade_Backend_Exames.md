@@ -13,7 +13,7 @@ const getExame = async (req, res) => {
     try {
         const exame= await exameModel.getExameById(req.params.id);
         if (!exame) {
-            return res.status(404).json({ message: "Exame não encontrada." });
+            return res.status(404).json({ message: "Exame não encontrado." });
         }
         res.json(exame);
     } catch (error) {
@@ -23,19 +23,19 @@ const getExame = async (req, res) => {
 
 const createExame = async (req, res) => {
     try {
-        const { tipo_exame} = req.body;
+        const {exame} = req.body;
         const photo = req.file ? req.file.filename : null;
-        const newExame = await exameModel.createExame(tipo_exame, photo);
+        const newExame = await exameModel.createExame(exame, photo);
         res.status(201).json(newExame);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao criar exame." });
+        res.status(500).json({ message: "Erro ao criar ex1ame." });
     }
 };
 
 const updateExame = async (req, res) => {
     try {
-        const { tipo_exame } = req.body;
-        const updatedExame = await exameModel.updateExame(req.params.id, tipo_exame);
+        const { exame } = req.body;
+        const updatedExame = await exameModel.updateExame(req.params.id, exame);
         if (!updatedExame) {
             return res.status(404).json({ message: "Exame não encontrada." });
         }

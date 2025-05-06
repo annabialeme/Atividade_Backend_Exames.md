@@ -2,7 +2,8 @@ const pacientesModel = require("../models/pacientesModel");
 
 const getAllPacientes = async (req, res) => {
     try {
-        const pacientes = await pacientesModel.getAllPacientes();
+        const {tipo_exame} = req.body;
+        const pacientes = await pacientesModel.getAllPacientes(tipo_exame);
         res.json(pacientes);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar pacientes." });
@@ -23,8 +24,8 @@ const getPaciente = async (req, res) => {
 
 const createPaciente = async (req, res) => {
     try {
-        const { name, idade } = req.body;
-        const newPaciente = await pacientesModel.createPaciente(name, idade);
+        const { name, idade, tipo_exame } = req.body;
+        const newPaciente = await pacientesModel.createPaciente(name, idade, tipo_exame);
         res.status(201).json(newPaciente);
     } catch (error) {
         res.status(500).json({ message: "Erro ao criar paciente." });
@@ -33,8 +34,8 @@ const createPaciente = async (req, res) => {
 
 const updatePaciente = async (req, res) => {
     try {
-        const { name, idade } = req.body;
-        const updatedPaciente = await pacientesModel.updatePaciente(req.params.id, name, idade);
+        const { name, idade, tipo_exame } = req.body;
+        const updatedPaciente = await pacientesModel.updatePaciente(req.params.id, name, idade, tipo_exame);
         if (!updatedPaciente) {
             return res.status(404).json({ message: "Paciente não encontrado." });
         }

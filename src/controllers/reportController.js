@@ -47,7 +47,7 @@ const exportExamePDF = async (req, res) => {
         
         exames.forEach((exames) => {
             doc.text(
-                `${exames.id} | ${exames.tipo_exame} `
+                `${exames.id} | ${exames.exame} `
             );
         });
 
